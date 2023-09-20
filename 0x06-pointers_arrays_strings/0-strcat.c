@@ -1,7 +1,7 @@
 #include "main.h"
 
 /**
- * _stract - prints a string to stdout
+ * _strcat - prints a string to stdout
  * @dest: pointer to the string to print
  * @src: pointer to source
  * Return: pointer to the new string
