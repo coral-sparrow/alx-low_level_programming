@@ -1,21 +1,21 @@
 #include "main.h"
 
 /**
- * _strlen - returns the largest of 3 numbers
- * @s: first integer
+ * _strlen - returns the length of a string
+ * @s: string to evaluate
  *
- * Return: sting lenght
+ * Return: the length of the string
  */
-
 int _strlen(char *s)
 {
-	int len = 0;
+	int i;
 
-	while (s[len]  != '\0')
+	i = 0;
+
+	while (s[i] != '\0')
 	{
-		len++;
+		i++;
 	}
 
-	return (len);
-
+	return (i);
 }
