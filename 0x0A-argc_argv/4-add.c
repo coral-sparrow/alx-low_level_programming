@@ -31,7 +31,15 @@ int main(int argc, char *argv[])
 
 		tmp = strtol(argv[i], &endptr, 10);
 
-		if ((endptr == str) || (errno != 0))
+		/*
+		*   printf("tmp %d\n", tmp);
+		* printf("endptr is: %p, str is: %p\n", endptr,str);
+		* printf("*endptr is: %c, *str is: %c\n", *endptr, *str);
+		*/
+		if (*endptr == '\0')
+			printf("new line got\n");
+
+		if ((endptr == str) || (errno != 0) || (*endptr != '\0'))
 		{
 			printf("Error\n");
 			return (1);
