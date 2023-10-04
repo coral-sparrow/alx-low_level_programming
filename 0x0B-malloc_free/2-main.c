@@ -9,7 +9,14 @@
  */
 int main(void)
 {
-    char *s;
+    char *s, *s2, *s3, *s4;
+    s2 = str_concat("Hello", NULL); 
+    s3 = str_concat(NULL, "Hello");
+    s4 = str_concat(NULL, NULL);
+
+    printf("%s\n", s2);
+    printf("%s\n", s3);
+    printf("%s\n", s4);
 
     s = str_concat("Betty ", "Holberton");
     if (s == NULL)
