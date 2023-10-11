@@ -1,5 +1,7 @@
 #include "dog.h"
 #include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
 
 /**
  * new_dog - check the code for ALX School students.
@@ -18,9 +20,9 @@ dog_t *new_dog(char *name, float age, char *owner)
 	if (!p)
 		return (NULL);
 
-	p->name = *name;
+	p->name = strdup(name);
+	p->owner = strdup(owner);
 	p->age = age;
-	p->owner = *owner;
 
 	return (p);
 }
