@@ -9,6 +9,8 @@
 
 size_t print_listint(const listint_t *h)
 {
+	if (!h)
+		return (-1);
 	listint_t *p;
 	size_t counter = 0;
 
