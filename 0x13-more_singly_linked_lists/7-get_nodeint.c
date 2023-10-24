@@ -1,34 +1,22 @@
 #include "lists.h"
-#include <stdio.h>
-#include <stdlib.h>
 
 /**
- * get_nodeint_at_index - returns the largest of 3 numbers
- * @head: pointer to list
- * @index: index
- * Return: largest number
+ * get_nodeint_at_index - returns the node at a certain index in a linked list
+ * @head: first node in the linked list
+ * @index: index of the node to return
+ *
+ * Return: pointer to the node we're looking for, or NULL
  */
-
 listint_t *get_nodeint_at_index(listint_t *head, unsigned int index)
 {
-	listint_t *p;
-	unsigned int idx = 0;
+	unsigned int i = 0;
+	listint_t *temp = head;
 
-	if (head)
+	while (temp && i < index)
 	{
-		p = head;
+		temp = temp->next;
+		i++;
+	}
 
-		while (p->next)
-		{
-			if (idx == index)
-				return (p);
-			p = p->next;
-			idx++;
-		}
-
-		p = NULL;
-		return (NULL);
-	} else
-		return (NULL);
+	return (temp ? temp : NULL);
 }
-
