@@ -26,6 +26,7 @@ listint_t *get_nodeint_at_index(listint_t *head, unsigned int index)
 			idx++;
 		}
 
+		p = NULL;
 		return (NULL);
 	} else
 		return (NULL);
