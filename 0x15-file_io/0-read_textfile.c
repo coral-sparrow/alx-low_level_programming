@@ -36,14 +36,15 @@ ssize_t read_textfile(const char *filename, size_t letters)
 		free (s);
 		return (0);
 	}
-	j = write(1, s, i);
 
-	if (j < 0)
+	j = write(1, s, i);
+	if ((j < 0) || (j < i))
 	{
 		free (s);
 		return (0);
 	}
 
 	free(s);
+	close(fd);
 	return (j);
 }
