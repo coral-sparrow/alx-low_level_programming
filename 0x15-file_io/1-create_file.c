@@ -22,7 +22,7 @@ int create_file(const char *filename, char *text_content)
 
 	buffer = text_content;
 
-	fd = open(filename, O_CREAT | O_RDWR | O_TRUNC, 0600);
+	fd = open(filename, O_RDWR | O_TRUNC | O_CREAT, 0600);
 	if (fd < 0)
 		return (-1);
 
@@ -32,7 +32,7 @@ int create_file(const char *filename, char *text_content)
 			i++;
 
 		w = write(fd, text_content, i + 1);
-		if (w < 0 || w < i + 1)
+		if (w < 0 || w < (i + 1))
 			return (-1);
 	}
 
