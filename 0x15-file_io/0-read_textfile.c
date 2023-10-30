@@ -14,25 +14,35 @@ ssize_t read_textfile(const char *filename, size_t letters)
 	ssize_t i, j;
 	char *s;
 
+	if (filename == NULL)
+		return (0);
+
 	s = malloc(sizeof(char) * letters);
 	if (!s)
 		return (0);
 
-	if (!filename)
-		return (0);
 
 	fd = open(filename, O_RDONLY);
-	if (!fd)
+	if (fd < 0)
+	{
+		free (s);
 		return (0);
+	}
 
 
 	i = read(fd, s, letters);
 	if (i < 0)
+	{
+		free (s);
 		return (0);
+	}
 	j = write(1, s, i);
 
 	if (j < 0)
+	{
+		free (s);
 		return (0);
+	}
 
 	free(s);
 	return (j);
