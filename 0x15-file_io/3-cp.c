@@ -31,11 +31,14 @@ int main(int argc, char *argv[])
 	if (src_fd == -1)
 	{
 		fprintf(stderr, "Error: Can't read from file %s\n", argv[1]);
-		return (100);
+		return (98);
 	}
-
 	dest_fd = open(argv[2], O_RDWR | O_TRUNC | O_CREAT, 664);
-
+	if (dest_fd == -1)
+	{
+		fprintf(stderr, "Error: Can't write to %s\n", argv[2]);
+		return (99);
+	}
 	do {
 
 		read_count = read(src_fd, buf, count);
@@ -44,7 +47,6 @@ int main(int argc, char *argv[])
 
 	close_s = close(src_fd);
 	close_d = close(dest_fd);
-
 	if (close_s == -1)
 	{
 		fprintf(stderr, "Error: Can't close fd %d\n", src_fd);
@@ -54,6 +56,5 @@ int main(int argc, char *argv[])
 		fprintf(stderr, "Error: Can't close fd %d\n", dest_fd);
 		return (100);
 	}
-
 	return (0);
 }
