@@ -24,19 +24,19 @@ int main(int argc, char *argv[])
 
 	if (argc != 3)
 	{
-		dprintf(fileno(stderr), "Usage: cp file_from file_to\n");
+		dprintf(STDERR_FILENO, "Usage: cp file_from file_to\n");
 		return (97);
 	}
 	src_fd = open(argv[1], O_RDONLY);
 	if (src_fd == -1)
 	{
-		dprintf(fileno(stderr), "Error: Can't read from file %s\n", argv[1]);
+		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", argv[1]);
 		return (98);
 	}
 	dest_fd = open(argv[2], O_WRONLY | O_TRUNC | O_CREAT, 0664);
 	if (dest_fd == -1)
 	{
-		dprintf(fileno(stderr), "Error: Can't write to %s\n", argv[2]);
+		dprintf(STDERR_FILENO, "Error: Can't write to %s\n", argv[2]);
 		return (99);
 	}
 	do {
@@ -49,11 +49,11 @@ int main(int argc, char *argv[])
 	close_d = close(dest_fd);
 	if (close_s == -1)
 	{
-		dprintf(fileno(stderr), "Error: Can't close fd %d\n", src_fd);
+		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", src_fd);
 		return (100);
 	} else if (close_d == -1)
 	{
-		dprintf(fileno(stderr), "Error: Can't close fd %d\n", dest_fd);
+		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", dest_fd);
 		return (100);
 	}
 	return (0);
