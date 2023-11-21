@@ -3,8 +3,73 @@
 #include <fcntl.h>
 #include <stdio.h>
 #include <unistd.h>
+#include <stdlib.h>
 
 #define MAX_READ 1024
+
+/**
+ * check_open_src - check if the source file can be open for read.
+ * @fd: the file descriptor from open function.
+ * @file: file path.
+ *
+ * Return: Nothing.
+ */
+void check_open_src(int fd, char *file)
+{
+	if (fd == -1)
+	{
+		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", file);
+		exit(98);
+	}
+}
+
+/**
+ * check_open_dst - check if the dest file can be open for write.
+ * @fd: the file descriptor from open function.
+ * @file: file path.
+ *
+ * Return: Nothing.
+ */
+void check_open_dst(int fd, char *file)
+{
+	if (fd == -1)
+	{
+		dprintf(STDERR_FILENO, "Error: Can't write to %s\n", file);
+		exit(99);
+	}
+}
+
+/**
+ * check_read_count - check if read sys call can read correctly from file.
+ * @read_count: the count returned from read syscall.
+ * @file: file path.
+ *
+ * Return: Nothing.
+ */
+void check_read_count(int read_count, char *file)
+{
+	if (read_count == -1)
+	{
+		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", file);
+		exit(98);
+	}
+}
+
+/**
+ * check_write_count - check if write sys call can write correctly from file.
+ * @write_count: the count returned from write syscall.
+ * @file: file path.
+ *
+ * Return: Nothing.
+ */
+void check_write_count(int write_count, char *file)
+{
+	if (write_count == -1)
+	{
+		dprintf(STDERR_FILENO, "Error: Can't write to %s\n", file);
+		exit(99);
+	}
+}
 
 /**
  * main - prints all the elements of a linked list
@@ -18,7 +83,7 @@
 int main(int argc, char *argv[])
 {
 	int src_fd, dest_fd, close_s, close_d;
-	ssize_t read_count;
+	ssize_t read_count, write_count;
 	size_t count = MAX_READ;
 	char buf[MAX_READ];
 
@@ -28,21 +93,15 @@ int main(int argc, char *argv[])
 		return (97);
 	}
 	src_fd = open(argv[1], O_RDONLY);
-	if (src_fd == -1)
-	{
-		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", argv[1]);
-		return (98);
-	}
+	check_open_src(src_fd, argv[1]);
 	dest_fd = open(argv[2], O_WRONLY | O_TRUNC | O_CREAT, 0664);
-	if (dest_fd == -1)
-	{
-		dprintf(STDERR_FILENO, "Error: Can't write to %s\n", argv[2]);
-		return (99);
-	}
+	check_open_dst(dest_fd, argv[2]);
 	do {
 
 		read_count = read(src_fd, buf, count);
-		write(dest_fd, buf, read_count);
+		check_read_count(read_count, argv[1]);
+		write_count = write(dest_fd, buf, read_count);
+		check_write_count(write_count, argv[2]);
 	} while (read_count != 0);
 
 	close_s = close(src_fd);
