@@ -24,7 +24,7 @@ int main(int argc, char *argv[])
 
 	if (argc != 3)
 	{
-		printf("Usage: cp file_from file_to\n");
+		fprintf(stderr, "Usage: cp file_from file_to\n");
 		return (97);
 	}
 	src_fd = open(argv[1], O_RDONLY);
