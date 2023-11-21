@@ -31,7 +31,7 @@ int main(int argc, char *argv[])
 	if (src_fd == -1)
 	{
 		fprintf(stderr, "Error: Can't read from file %s\n", argv[1]);
-		return (97);
+		return (100);
 	}
 
 	dest_fd = open(argv[2], O_RDWR | O_TRUNC | O_CREAT, 664);
