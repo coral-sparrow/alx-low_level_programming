@@ -33,7 +33,7 @@ int main(int argc, char *argv[])
 		fprintf(stderr, "Error: Can't read from file %s\n", argv[1]);
 		return (98);
 	}
-	dest_fd = open(argv[2], O_RDWR | O_TRUNC | O_CREAT, 664);
+	dest_fd = open(argv[2], O_RDWR | O_TRUNC | O_CREAT, 0664);
 	if (dest_fd == -1)
 	{
 		fprintf(stderr, "Error: Can't write to %s\n", argv[2]);
