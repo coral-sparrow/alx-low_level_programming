@@ -1,14 +1,9 @@
 CC = gcc
 SRC = main.c school.c
-OBJ = $(SRC:%.c=%.o)
-NAME = school
+OBJ = $(patsubst %.c, %.o, ${SRC})
 
-.PHONY: all
-all: ${NAME}
 
-${NAME}: ${OBJ}
-	${CC} $^ -o $@
+echo_obj:
+	@echo ${OBJ}
 
-${OBJ}: %.o: %.c
-	${CC} -c $< -o $@
 
