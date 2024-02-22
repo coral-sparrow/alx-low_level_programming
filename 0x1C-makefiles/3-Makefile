@@ -10,11 +10,11 @@ all: $(OBJ)
 
 
 clean:
-	$(RM) -f *~ school
+	$(RM) -f *~ $(NAME)
 
 oclean:
 	$(RM) -f *.o
 fclean:
-	$(RM) -f *.o *~ school
+	$(RM) -f *.o *~ $(NAME)
 
 re: fclean all
