@@ -9,11 +9,11 @@ all: $(OBJ) m.h
 
 
 clean:
-	-$(RM) -f *~ $(NAME)
+	$(RM) -f *~ $(NAME)
 
 oclean:
-	-$(RM) -f *.o
+	$(RM) -f *.o
 fclean:
-	-$(RM) -f *.o *~ $(NAME)
+	$(RM) -f *.o *~ $(NAME)
 
 re: fclean all
